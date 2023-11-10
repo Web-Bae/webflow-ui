@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/scripts/background.ts"],
+  "sourcesContent": ["chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {\n  if (message.action === \"insertCSS\") {\n    console.log({ message });\n    chrome.scripting.insertCSS(\n      {\n        target: { tabId: sender?.tab?.id || 1 },\n        css: message.css,\n      },\n      () => {\n        sendResponse({ success: true });\n      }\n    );\n    return true; // Indicates that response will be sent asynchronously\n  }\n  if (message.action === \"removeCSS\") {\n    chrome.scripting.removeCSS(\n      {\n        target: { tabId: sender?.tab?.id || 1 },\n        css: message.css,\n      },\n      () => {\n        sendResponse({ success: true });\n      }\n    );\n    return true; // Indicates that response will be sent asynchronously\n  }\n});\n"],
+  "mappings": ";;AAAA,SAAO,QAAQ,UAAU,YAAY,CAAC,SAAS,QAAQ,iBAAiB;AACtE,QAAI,QAAQ,WAAW,aAAa;AAClC,cAAQ,IAAI,EAAE,QAAQ,CAAC;AACvB,aAAO,UAAU;AAAA,QACf;AAAA,UACE,QAAQ,EAAE,OAAO,QAAQ,KAAK,MAAM,EAAE;AAAA,UACtC,KAAK,QAAQ;AAAA,QACf;AAAA,QACA,MAAM;AACJ,uBAAa,EAAE,SAAS,KAAK,CAAC;AAAA,QAChC;AAAA,MACF;AACA,aAAO;AAAA,IACT;AACA,QAAI,QAAQ,WAAW,aAAa;AAClC,aAAO,UAAU;AAAA,QACf;AAAA,UACE,QAAQ,EAAE,OAAO,QAAQ,KAAK,MAAM,EAAE;AAAA,UACtC,KAAK,QAAQ;AAAA,QACf;AAAA,QACA,MAAM;AACJ,uBAAa,EAAE,SAAS,KAAK,CAAC;AAAA,QAChC;AAAA,MACF;AACA,aAAO;AAAA,IACT;AAAA,EACF,CAAC;",
+  "names": []
+}
